@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreFeedbackReplyRequest extends FormRequest
+{
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    public function rules(): array
+    {
+        return [
+            'title' => ['required', 'string', 'max:255'],
+            'message' => ['required', 'string', 'max:2000'],
+            'dietitian_id' => ['nullable', 'integer', 'exists:dietitians,id'],
+        ];
+    }
+}
